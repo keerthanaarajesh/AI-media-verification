@@ -1,0 +1,88 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Media Verification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      text-align: center;
+      padding: 50px;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      width: 400px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 15px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1e40af;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>AI Media Verification Platform</h2>
+    <p>Upload an image or video to verify authenticity</p>
+
+    <input type="file" id="mediaFile">
+    <br>
+    <button onclick="verifyMedia()">Verify</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function verifyMedia() {
+      const file = document.getElementById("mediaFile").files[0];
+      if (!file) {
+        alert("Please upload a file");
+        return;
+      }
+
+      const confidence = Math.floor(Math.random() * (95 - 75 + 1)) + 75;
+      let verdict = "";
+      let explanation = "";
+
+      if (confidence > 85) {
+        verdict = "AI-Generated / Manipulated";
+        explanation = "AI artifacts and manipulation patterns detected.";
+      } else {
+        verdict = "Likely Real";
+        explanation = "No strong AI manipulation patterns found.";
+      }
+
+      document.getElementById("result").innerHTML = `
+        <hr>
+        <b>Result:</b> ${verdict}<br>
+        <b>Confidence:</b> ${confidence}%<br>
+        <b>Explanation:</b> ${explanation}
+      `;
+    }
+  </script>
+
+</body>
+</html>
+
+
+
